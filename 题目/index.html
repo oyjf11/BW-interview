@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>面试应答文档导航</title>
+<style>
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px 60px; color: #1a1a1a; }
+  h1 { font-size: 22px; margin-bottom: 24px; }
+  ul.top { list-style: none; padding: 0; margin: 0; }
+  ul.top > li { margin-bottom: 10px; }
+  details.doc > summary { padding: 14px 16px; background: #f5f5f7; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+  details.doc > summary:hover { background: #e9e9ee; }
+  details.doc[open] > summary { border-radius: 8px 8px 0 0; }
+  ul.q-list { list-style: none; margin: 0; padding: 8px 0 8px 18px; border: 1px solid #eee; border-top: none; border-radius: 0 0 8px 8px; }
+  details.doc > ul.q-list { padding-left: 0; }
+  ul.q-list > li { margin: 2px 0; }
+  details.module { margin: 2px 0; }
+  details.module > summary { padding: 8px 16px; cursor: pointer; font-weight: 500; color: #333; border-radius: 6px; }
+  details.module > summary:hover { background: #f0f0f3; }
+  details.module ul.q-list { border: none; padding-left: 16px; }
+  a.q-link { display: block; padding: 6px 16px; color: #1a1a1a; text-decoration: none; border-radius: 6px; font-size: 14.5px; }
+  a.q-link:hover { background: #eef4ff; color: #06c; }
+</style>
+</head>
+<body>
+<h1>面试应答文档导航</h1>
+<ul class="top">
+<li><details class="doc">
+  <summary>AI-harness 面试备战</summary>
+  <ul class="q-list">
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q1-设计生产级-agent-运行时-harness-的核心循环与崩溃恢复">Q1　设计生产级 agent 运行时 harness 的核心循环与崩溃恢复</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q2-停止条件设计">Q2　停止条件设计</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q3-单-agent-与多-agent-的-harness-差异">Q3　单 agent 与多 agent 的 harness 差异</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q4-工具抽象层与非法工具调用的纠错反馈">Q4　工具抽象层与非法工具调用的纠错反馈</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q5-模型无关的抽象层">Q5　模型无关的抽象层</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q6-上下文超窗管理策略">Q6　上下文超窗管理策略</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q7-记忆系统设计与记忆污染防治">Q7　记忆系统设计与记忆污染防治</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q8-超大工具结果的处理决策放在哪一层">Q8　超大工具结果的处理决策放在哪一层</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q9-副作用动作的权限、确认与可中断设计">Q9　副作用动作的权限、确认与可中断设计</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q10-Prompt-injection-的纵深防御">Q10　Prompt injection 的纵深防御</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q11-多租户下的凭据隔离与越权阻断">Q11　多租户下的凭据隔离与越权阻断</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q12-代码执行类工具的沙箱设计">Q12　代码执行类工具的沙箱设计</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q13-面向轨迹的离线-eval-harness-设计">Q13　面向轨迹的离线 eval harness 设计</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q14-线上轨迹的根因定位与可观测体系">Q14　线上轨迹的根因定位与可观测体系</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q15-模型升级回归的持续评测与发布门禁">Q15　模型升级回归的持续评测与发布门禁</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q16-生产-agent-平台的质量与效率度量">Q16　生产 agent 平台的质量与效率度量</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q17-端到端延迟优化及其正确性风险">Q17　端到端延迟优化及其正确性风险</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q18-成本控制体系">Q18　成本控制体系</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q19-自研-harness-vs-基于开源框架二次开发的选型">Q19　自研 harness vs 基于开源框架二次开发的选型</a></li>
+<li><a class="q-link" href="AI-harness面试备战-应答文档.html#Q20-harness-与模型能力的边界开放题">Q20　harness 与模型能力的边界（开放题）</a></li>
+  </ul>
+</details></li>
+<li><details class="doc">
+  <summary>AI 安全对齐与护栏面试备战</summary>
+  <ul class="q-list">
+<li><details class="module">
+  <summary>模块一：AI 安全——提示注入与攻击面</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q1-提示词注入原理、分类与防御体系拉档题">Q1　提示词注入原理、分类与防御体系（★拉档题）</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q2-间接注入——RAG-知识库投毒攻击与防御">Q2　间接注入——RAG 知识库投毒攻击与防御</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q3-模型投毒训练投毒后门投毒RAG-污染与防御">Q3　模型投毒（训练投毒/后门投毒/RAG 污染）与防御</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q4-模型窃取、对抗样本与影子-AI-综合">Q4　模型窃取、对抗样本与影子 AI 综合</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块二：对齐（Alignment）技术</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q5-RLHF-全链路SFT-→-RM-→-PPO拉档题">Q5　RLHF 全链路（SFT → RM → PPO）（★拉档题）</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q6-DPO-vs-RLHF原理对比与选型拉档题">Q6　DPO vs RLHF：原理对比与选型（★拉档题）</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q7-Constitutional-AI宪法-AI+-RLAIF-与对齐技术演进">Q7　Constitutional AI（宪法 AI）+ RLAIF 与对齐技术演进</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q8-红队测试方法论与评估">Q8　红队测试方法论与评估</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块三：护栏（Guardrails）工程</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q9-护栏四层架构设计L1-L4拉档题">Q9　护栏四层架构设计（L1-L4）（★拉档题）</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q10-护栏关键设计决策">Q10　护栏关键设计决策</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q11-幻觉治理全链路">Q11　幻觉治理全链路</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q12-多-Agent-护栏与-Agent-互注入防御">Q12　多 Agent 护栏与 Agent 互注入防御</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块四：隐私保护与合规</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q13-隐私保护技术全景DPFLHEMPC水印">Q13　隐私保护技术全景（DP/FL/HE/MPC/水印）</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q14-中国法规合规个信法网安法生成式-AI-办法">Q14　中国法规合规（个信法/网安法/生成式 AI 办法）</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块五：评测体系</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q15-安全评测基准SafetyBench--TrustGPT--ToxiGen-等">Q15　安全评测基准（SafetyBench / TrustGPT / ToxiGen 等）</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q16-对齐评测方法LLM-as-Judge--人类评估--Elo--AB-Test">Q16　对齐评测方法（LLM-as-Judge / 人类评估 / Elo / A/B Test）</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块六：架构设计与前沿</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q17-企业级-LLM-安全护栏架构设计拉档题">Q17　企业级 LLM 安全护栏架构设计（★拉档题）</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q18-模型对齐效果评估方案设计">Q18　模型对齐效果评估方案设计</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q19-DPO-vs-RLHF-选型决策与实战">Q19　DPO vs RLHF 选型决策与实战</a></li>
+    <li><a class="q-link" href="AI安全对齐与护栏面试备战-应答文档.html#Q20-2026-前沿加分项整合MCP-安全--自我反思--鲁棒性--可解释性">Q20　2026 前沿加分项整合（MCP 安全 / 自我反思 / 鲁棒性 / 可解释性）</a></li>
+  </ul>
+</details></li>
+  </ul>
+</details></li>
+<li><details class="doc">
+  <summary>Agent 评测与可观测性</summary>
+  <ul class="q-list">
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q1-Agent-可观测性的四维度设计功能--性能--适应--协作">Q1　Agent 可观测性的四维度设计：功能 / 性能 / 适应 / 协作</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q2-三层指标体系任务级-→-组件级-→-推理级">Q2　三层指标体系：任务级 → 组件级 → 推理级</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q3-复利失败公式从组件指标推导端到端可靠性">Q3　复利失败公式：从组件指标推导端到端可靠性</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q4-Agent-死循环--行为异常的实时检测与归因定位">Q4　Agent 死循环 / 行为异常的实时检测与归因定位</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q5-三层评估框架L1-任务级--L2-过程级--L3-组件级">Q5　三层评估框架：L1 任务级 / L2 过程级 / L3 组件级</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q6-LLM-as-Judge-的可靠性、偏见校准与多-Judge-投票">Q6　LLM-as-Judge 的可靠性、偏见校准与多 Judge 投票</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q7-评测集构建策略正常流程-60%-+-边界-30%-+-对抗-10%">Q7　评测集构建策略：正常流程 60% + 边界 30% + 对抗 10%</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q8-离线评测-vs-AB-测试-vs-Shadow-Mode-的架构选型">Q8　离线评测 vs A/B 测试 vs Shadow Mode 的架构选型</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q9-AgentBench--GAIA-等-benchmark-的适用性边界与业务定制">Q9　AgentBench / GAIA 等 benchmark 的适用性边界与业务定制</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q10-全链路-Trace-的数据采集、存储与关联设计">Q10　全链路 Trace 的数据采集、存储与关联设计</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q11-采样策略博弈错误全量-+-慢请求全量-+-正常-10%-的工程权衡">Q11　采样策略博弈：错误全量 + 慢请求全量 + 正常 10% 的工程权衡</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q12-渲染后真实-prompt-的捕获与-prompt-拼装-bug-定位">Q12　渲染后真实 prompt 的捕获与 prompt 拼装 bug 定位</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q13-告警体系指标阈值-vs-ML-异常检测的分层策略">Q13　告警体系：指标阈值 vs ML 异常检测的分层策略</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q14-多-Agent-场景的-DAG-关联-Trace-与-A2A-通信追踪">Q14　多 Agent 场景的 DAG 关联 Trace 与 A2A 通信追踪</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q15-模型升级--Prompt-变更的回归评测与行为回退检测">Q15　模型升级 / Prompt 变更的回归评测与行为回退检测</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q16-评测防过拟合holdout-分离、持续刷新、防刷分">Q16　评测防过拟合：holdout 分离、持续刷新、防刷分</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q17-CICD-中非确定性评测的门禁设计">Q17　CI/CD 中非确定性评测的门禁设计</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q18-调试三板斧Trace-回放、步骤级对比、注入测试">Q18　调试三板斧：Trace 回放、步骤级对比、注入测试</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q19-评测基础设施的分层架构与规模化设计">Q19　评测基础设施的分层架构与规模化设计</a></li>
+<li><a class="q-link" href="Agent评测与可观测性-应答文档.html#Q20-MCP-协议对可观测性的影响与-2026-演进趋势">Q20　MCP 协议对可观测性的影响与 2026 演进趋势</a></li>
+  </ul>
+</details></li>
+<li><details class="doc">
+  <summary>Prompt 工程与上下文工程面试备战</summary>
+  <ul class="q-list">
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q1-system--developer--user-三类消息的职责边界">Q1　system / developer / user 三类消息的职责边界</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q2-清晰指令的设计约束、格式、示例怎么给">Q2　清晰指令的设计：约束、格式、示例怎么给</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q3-结构化输出JSON-mode、function-calling-与受限解码">Q3　结构化输出：JSON mode、function calling 与受限解码</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q4-Prompt-的可维护性与版本化工程">Q4　Prompt 的可维护性与版本化工程</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q5-CoT--思维链原理、适用与代价">Q5　CoT / 思维链：原理、适用与代价</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q6-Few-shot-示例工程选择、数量、顺序">Q6　Few-shot 示例工程：选择、数量、顺序</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q7-ReAct-等「推理+行动」范式与-agent-的关系">Q7　ReAct 等「推理+行动」范式与 agent 的关系</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q8-自洽性、自我反思与多轮校验self-consistency--reflection">Q8　自洽性、自我反思与多轮校验(self-consistency / reflection)</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q9-上下文工程-vs-prompt-工程边界与重心">Q9　上下文工程 vs prompt 工程：边界与重心</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q10-上下文窗口预算的分配与组织">Q10　上下文窗口预算的分配与组织</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q11-上下文压缩与摘要的「不丢关键依赖」">Q11　上下文压缩与摘要的「不丢关键依赖」</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q12-RAG-上下文的组织检索结果如何进-prompt">Q12　RAG 上下文的组织：检索结果如何进 prompt</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q13-幻觉的成因与提示上下文侧的抑制手段">Q13　幻觉的成因与提示/上下文侧的抑制手段</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q14-Prompt-injection-与-jailbreak-的提示层防御及其局限">Q14　Prompt injection 与 jailbreak 的提示层防御及其局限</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q15-输出安全、护栏与内容合规尤其国内场景">Q15　输出安全、护栏与内容合规(尤其国内场景)</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q16-对抗提示注入的鲁棒性测试与红队">Q16　对抗提示注入的鲁棒性测试与红队</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q17-Prompt-的评测如何科学衡量「改好了」">Q17　Prompt 的评测：如何科学衡量「改好了」</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q18-Prompt-的成本与延迟优化">Q18　Prompt 的成本与延迟优化</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q19-自动化-prompt-优化APE--DSPy-类与人工的边界">Q19　自动化 prompt 优化(APE / DSPy 类)与人工的边界</a></li>
+<li><a class="q-link" href="Prompt工程与上下文工程面试备战-应答文档.html#Q20-跨模型的-prompt-可移植性与回归">Q20　跨模型的 prompt 可移植性与回归</a></li>
+  </ul>
+</details></li>
+<li><details class="doc">
+  <summary>RAG 面试备战</summary>
+  <ul class="q-list">
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q1-分块策略选型固定窗口--段落--父子-small-to-big-的取舍">Q1　分块策略选型：固定窗口 / 段落 / 父子 small-to-big 的取舍</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q2-embedding-选型与-querydocument-不对称编码">Q2　embedding 选型与 query/document 不对称编码</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q3-知识库构建与更新文档解析、增量索引、索引一致性">Q3　知识库构建与更新：文档解析、增量索引、索引一致性</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q4-元数据与结构化过滤检索前硬过滤-vs-检索后过滤">Q4　元数据与结构化过滤：检索前硬过滤 vs 检索后过滤</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q5-混合检索向量-+-关键词的必要性与融合方法">Q5　混合检索（向量 + 关键词）的必要性与融合方法</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q6-RRF-vs-加权融合-vs-rerank-的定位与取舍">Q6　RRF vs 加权融合 vs rerank 的定位与取舍</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q7-两阶段检索粗排-+-精排与-rerank-的价值边界">Q7　两阶段检索（粗排 + 精排）与 rerank 的价值边界</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q8-query-改写--扩展补-vocabulary-gap规则-vs-LLM">Q8　query 改写 / 扩展：补 vocabulary gap，规则 vs LLM</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q9-多意图拆分与多路召回">Q9　多意图拆分与多路召回</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q10-检索结果如何喂给-LLM引用、排序、截断、上下文构造">Q10　检索结果如何喂给 LLM：引用、排序、截断、上下文构造</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q11-幻觉与忠实性grounded-生成、citation-可溯源">Q11　幻觉与忠实性：grounded 生成、citation 可溯源</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q12-低置信度拒答--转人工置信度门控设计">Q12　低置信度拒答 / 转人工：置信度门控设计</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q13-RAG-vs-长上下文什么时候该-RAG、什么时候塞进窗口">Q13　RAG vs 长上下文：什么时候该 RAG、什么时候塞进窗口</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q14-RAG-评测体系命中率指标-vs-置信度指标">Q14　RAG 评测体系：命中率指标 vs 置信度指标</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q15-评测数据隔离与防过拟合">Q15　评测数据隔离与防过拟合</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q16-离线消融实验设计单变量递进、归因分解、尺度陷阱">Q16　离线消融实验设计：单变量递进、归因分解、尺度陷阱</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q17-多-Provider-适配与流式协议统一">Q17　多 Provider 适配与流式协议统一</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q18-索引嵌入缓存与成本控制">Q18　索引/嵌入缓存与成本控制</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q19-生产-RAG-的可观测与-bad-case-闭环">Q19　生产 RAG 的可观测与 bad case 闭环</a></li>
+<li><a class="q-link" href="RAG面试备战-应答文档.html#Q20-RAG-系统的演进路线从-baseline-到生产级的迭代判断">Q20　RAG 系统的演进路线：从 baseline 到生产级的迭代判断</a></li>
+  </ul>
+</details></li>
+<li><details class="doc">
+  <summary>function-calling 面试备战</summary>
+  <ul class="q-list">
+<li><details class="module">
+  <summary>模块一：Function Calling 协议与设计</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q1-你们项目中-function-calling-的协议是怎么设计的？LLM-返回的-tool_calls-怎么处理？">Q1　你们项目中 function calling 的协议是怎么设计的？LLM 返回的 tool_calls 怎么处理？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q2-怎么把内部的工具定义映射成-OpenAI-兼容的-function-calling-schema？">Q2　怎么把内部的工具定义映射成 OpenAI 兼容的 function calling schema？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q3-支持多个-LLM-provider-时function-calling-的差异怎么处理？">Q3　支持多个 LLM provider 时，function calling 的差异怎么处理？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q4-tool_choice-参数怎么用的？什么时候用-auto-vs-required-vs-none？拉档题">Q4　tool_choice 参数怎么用的？什么时候用 auto vs required vs none？（★拉档题）</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块二：工具 Schema 设计</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q5-工具的-JSON-Schema-怎么定义的？有哪些字段？">Q5　工具的 JSON Schema 怎么定义的？有哪些字段？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q6-工具是怎么注册的？注册时机和生命周期？">Q6　工具是怎么注册的？注册时机和生命周期？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q7-参数校验怎么做的？JSON-Schema-validation-的具体实现？">Q7　参数校验怎么做的？JSON Schema validation 的具体实现？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q8-工具元数据timeout、retries、risk_level怎么管理？设计考量？">Q8　工具元数据（timeout、retries、risk_level）怎么管理？设计考量？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块三：工具可靠性与错误处理</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q9-工具调用的重试机制怎么实现的？拉档题">Q9　工具调用的重试机制怎么实现的？（★拉档题）</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q10-工具调用超时怎么处理？">Q10　工具调用超时怎么处理？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q11-工具调用失败后的降级策略？">Q11　工具调用失败后的降级策略？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q12-响应数据太大怎么处理？截断策略？">Q12　响应数据太大怎么处理？截断策略？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块四：工具安全与风险管控</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q13-工具的风险分级怎么设计的？">Q13　工具的风险分级怎么设计的？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q14-高风险操作如-execute_action怎么管控？审批流程怎么设计？拉档题">Q14　高风险操作（如 execute_action）怎么管控？审批流程怎么设计？（★拉档题）</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q15-生产环境的操作怎么限制？">Q15　生产环境的操作怎么限制？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q16-审计日志怎么记录的？">Q16　审计日志怎么记录的？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块五：外部系统集成与编排</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q17-适配器模式怎么设计的？mock-和-real-怎么切换？">Q17　适配器模式怎么设计的？mock 和 real 怎么切换？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q18-多个工具并行调用怎么实现？">Q18　多个工具并行调用怎么实现？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q19-Agent-的-ReAct-循环中工具调用怎么编排？">Q19　Agent 的 ReAct 循环中工具调用怎么编排？</a></li>
+    <li><a class="q-link" href="function-calling面试备战-应答文档.html#Q20-LangGraph-图编排中工具节点怎么嵌入？拉档题">Q20　LangGraph 图编排中工具节点怎么嵌入？（★拉档题）</a></li>
+  </ul>
+</details></li>
+  </ul>
+</details></li>
+<li><details class="doc">
+  <summary>微调与模型定制</summary>
+  <ul class="q-list">
+<li><details class="module">
+  <summary>模块一：微调 vs RAG vs Prompt（灵魂拷问）</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q1-微调、RAG、Prompt-Engineering-三者的本质区别是什么？">Q1　微调、RAG、Prompt Engineering 三者的本质区别是什么？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q2-什么时候该上微调？给出三个信号">Q2　什么时候该上微调？给出三个信号。</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q3-RAG-和微调能互相替代吗？为什么？">Q3　RAG 和微调能互相替代吗？为什么？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q4-Prompt-能替代微调吗？在什么场景下可以什么场景下不行？">Q4　Prompt 能替代微调吗？在什么场景下可以，什么场景下不行？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块二：高效微调（LoRA / QLoRA / PEFT）</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q5-为什么全参数微调在工业界已死？LoRA-相比全参数微调的核心优势是什么？">Q5　为什么全参数微调在工业界&amp;quot;已死&amp;quot;？LoRA 相比全参数微调的核心优势是什么？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q6-讲一下-LoRA-的数学原理为什么低秩近似有效？">Q6　讲一下 LoRA 的数学原理。为什么低秩近似有效？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q7-QLoRA-相比-LoRA-多了什么？为什么消费级显卡能做-7B-微调？">Q7　QLoRA 相比 LoRA 多了什么？为什么消费级显卡能做 7B 微调？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q8-LoRA-的超参数怎么选？给一个-7B-模型-+-RTX-4090-的推荐配置">Q8　LoRA 的超参数怎么选？给一个 7B 模型 + RTX 4090 的推荐配置。</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q9-LoRA-和-Adapter-怎么选？各有什么适用场景？">Q9　LoRA 和 Adapter 怎么选？各有什么适用场景？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块三：数据构造</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q10-1000-条高质量->-10-万条噪声——这句话背后的逻辑是什么？">Q10　&amp;quot;1000 条高质量 &amp;gt; 10 万条噪声&amp;quot;——这句话背后的逻辑是什么？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q11-7B-模型不同任务类型的数据量推荐是多少？">Q11　7B 模型不同任务类型的数据量推荐是多少？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q12-数据不够怎么办？有哪些数据增强手段？">Q12　数据不够怎么办？有哪些数据增强手段？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q13-微调后效果变差了灾难性遗忘怎么办？">Q13　微调后效果变差了（灾难性遗忘）怎么办？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块四：知识蒸馏</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q14-知识蒸馏的核心原理是什么？和微调有什么本质区别？">Q14　知识蒸馏的核心原理是什么？和微调有什么本质区别？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q15-什么时候用蒸馏而不是直接用小模型微调？">Q15　什么时候用蒸馏而不是直接用小模型微调？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q16-KD-LoRA-是什么？为什么是-2026-年前沿方案？">Q16　KD-LoRA 是什么？为什么是 2026 年前沿方案？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块五：Agent 场景下的特殊考量</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q17-Agent-到底该不该微调？不同场景怎么选？">Q17　Agent 到底该不该微调？不同场景怎么选？</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q18-工具从-5-个增到-80-个后误调率上升怎么诊断和解决？">Q18　工具从 5 个增到 80 个后误调率上升，怎么诊断和解决？</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>模块六：架构设计题</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q19-设计一个企业客服-Agent怎么选微调RAGPrompt？给出完整方案">Q19　设计一个企业客服 Agent，怎么选微调/RAG/Prompt？给出完整方案。</a></li>
+    <li><a class="q-link" href="微调与模型定制-应答文档.html#Q20-QLoRA-和-LoRA-怎么选？给出决策标准">Q20　QLoRA 和 LoRA 怎么选？给出决策标准。</a></li>
+  </ul>
+</details></li>
+  </ul>
+</details></li>
+<li><details class="doc">
+  <summary>系统设计与工程化部署</summary>
+  <ul class="q-list">
+<li><details class="module">
+  <summary>一、基础认知：第一道分水岭</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q1-Chatbot、Workflow、Autonomous-Agent-三者本质区别">Q1　Chatbot、Workflow、Autonomous Agent 三者本质区别</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q2-Agentic-LoopThought-→-Action-→-Observation-循环">Q2　Agentic Loop：Thought → Action → Observation 循环</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>二、核心架构五大模块</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q3-感知模块设计">Q3　感知模块设计</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q4-规划模块设计——从-CoT-到-ReAct-到-Hierarchical-Planning">Q4　规划模块设计——从 CoT 到 ReAct 到 Hierarchical Planning</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q5-行动工具模块设计——工程落地核心难点">Q5　行动/工具模块设计——工程落地核心难点</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q6-记忆模块设计——2026-年最硬核考点">Q6　记忆模块设计——2026 年最硬核考点</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q7-反思模块设计">Q7　反思模块设计</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>三、MCP 协议：从加分题变必答题</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q8-MCP-vs-传统-Function-Calling">Q8　MCP vs 传统 Function Calling</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q9-MCP-工具爆炸治理">Q9　MCP 工具爆炸治理</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>四、多 Agent 协作：架构师核心区分点</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q10-四种协作模式与适用场景">Q10　四种协作模式与适用场景</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q11-多-Agent-三大坑及解决方案">Q11　多 Agent 三大坑及解决方案</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>五、生产级系统架构设计</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q12-生产级五层架构设计">Q12　生产级五层架构设计</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q13-关键设计决策">Q13　关键设计决策</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q14-异常处理四层防御体系">Q14　异常处理四层防御体系</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>六、RAG 检索优化</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q15-RAG-完整链路设计">Q15　RAG 完整链路设计</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q16-RAG-高频追问">Q16　RAG 高频追问</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>七、评测体系设计</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q17-三层评估框架">Q17　三层评估框架</a></li>
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q18-LLM-as-Judge-自恋偏见">Q18　LLM-as-Judge 自恋偏见</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>八、架构设计真题</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q19-设计一个生产级-Agent-系统以-SRE-故障处置为例">Q19　设计一个生产级 Agent 系统（以 SRE 故障处置为例）</a></li>
+  </ul>
+</details></li>
+<li><details class="module">
+  <summary>九、自研 vs 框架选型</summary>
+  <ul class="q-list">
+    <li><a class="q-link" href="系统设计与工程化部署-应答文档.html#Q20-为什么不用-LangChainLangGraph选择自研治理平台？">Q20　为什么不用 LangChain/LangGraph，选择自研/治理平台？</a></li>
+  </ul>
+</details></li>
+  </ul>
+</details></li>
+</ul>
+</body>
+</html>
